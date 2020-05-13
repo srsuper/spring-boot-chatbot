@@ -10,13 +10,13 @@ import java.util.Map;
 @Brain
 public class HelloWorldBrain {
 
-    @BrainCell(key="안녕", function = "hello")
+    @BrainCell(key="hi", function = "hello")
     public String hello(BrainRequest brainRequest) {
         return  "안녕~~";
     }
 
 
-    @BrainCell(key = "따라해봐", function = "echo-start")
+    @BrainCell(key = "bot", function = "echo-start")
     public String echo(BrainRequest brainRequest) {
         return  "말해봐";
     }
@@ -29,12 +29,12 @@ public class HelloWorldBrain {
 
     private Map<String, String> map = new HashMap<>();
 
-    @BrainCell(key = "기록", function = "record-start")
+    @BrainCell(key = "record", function = "record-start")
     public String record(BrainRequest brainRequest) {
         return  "조회? 저장?";
     }
 
-    @BrainCell(function = "record-read", key="조회", parent = "record-start")
+    @BrainCell(function = "record-read", key="record-read", parent = "record-start")
     public String record2(BrainRequest brainRequest) {
         return  "무엇을?";
     }
@@ -44,7 +44,7 @@ public class HelloWorldBrain {
         return  map.getOrDefault(brainRequest.getContent(), "저장된 내용이 없다");
     }
 
-    @BrainCell(function = "record-save", key="저장", parent = "record-start")
+    @BrainCell(function = "record-save", key="record-save", parent = "record-start")
     public String record3(BrainRequest brainRequest) {
         return  "무엇을?";
     }
